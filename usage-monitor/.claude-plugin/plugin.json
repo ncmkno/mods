@@ -1,6 +1,6 @@
 {
   "name": "usage-monitor",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Live token, cost and tool-call accounting for the session and every subagent: status line, /usage-monitor pane, and a toast when a subagent finishes. Can also report to a local usage-monitor API for history and a web dashboard (off by default).",
   "types": "./types/index.d.ts",
   "userConfig": {

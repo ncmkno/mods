@@ -28,6 +28,7 @@ import {
   RETRY_MIN_MS,
   TIMEOUT_MS,
   encode,
+  toolDetail,
   usageEvent,
 } from './report'
 import type { ReportEvent, StampedEvent } from './report'
@@ -190,7 +191,8 @@ export const register: Register = (on, options) => {
 
   on('tool.call', async ($, e, next) => {
     publish($, await update($, ledger, l => addToolCall(l, e.agentId ?? MAIN, String(e.tool))))
-    report($, socket, { type: 'tool', agent: e.agentId ?? MAIN, tool: String(e.tool) })
+    const detail = toolDetail(e as unknown as Record<string, unknown>)
+    report($, socket, { type: 'tool', agent: e.agentId ?? MAIN, tool: String(e.tool), ...(detail === undefined ? {} : { detail }) })
 
     return next(e)
   })
